@@ -1,0 +1,22 @@
+pipeline{
+    agent{
+        label{
+            label "Slave-Node"
+        }
+    }
+    tools{
+        maven 'M2_HOME'
+    }
+    stages{
+        stage('git'){
+            steps{
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '4b8252b1-f261-41fa-97b1-4d195b73dd82', url: 'https://github.com/Nagalakshmidodda/helloworldapp.git']]])
+            }
+        }
+        stage('Build'){
+            steps{
+                sh 'mvn clean install package'
+            }
+        }
+    }
+}
