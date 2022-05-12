@@ -16,6 +16,7 @@ pipeline{
         }
         stage('Build'){
             steps{
+<<<<<<< HEAD
                 sh 'mvn clean the package'
             }
         }
